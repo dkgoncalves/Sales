@@ -1,0 +1,1713 @@
+Started GET "/" for 127.0.0.1 at 2018-12-10 21:26:33 -0200
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/railties-5.2.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/railties-5.2.2/lib/rails/templates/rails/welcome/index.html.erb (2.1ms)
+Completed 200 OK in 12ms (Views: 5.0ms | ActiveRecord: 0.0ms)
+
+
+  [1m[35m (0.5ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rails:9
+  [1m[35m (317.4ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:9
+  [1m[35m (368.9ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT GET_LOCK('3123916393049455500', 0)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateUsers (20181210233101)
+  [1m[35m (657.5ms)[0m  [1m[35mCREATE TABLE `users` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `document` varchar(255), `kind` int, `status` int, `notes` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL)[0m
+  ↳ db/migrate/20181210233101_create_users.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::SchemaMigration Create (27.9ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20181210233101')[0m
+  ↳ bin/rails:9
+  [1m[35m (99.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateClients (20181210233115)
+  [1m[35m (397.2ms)[0m  [1m[35mCREATE TABLE `clients` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `company_name` varchar(255), `document` varchar(255), `email` varchar(255), `phone` varchar(255), `user_id` bigint, `notes` text, `status` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_clients_on_user_id`  (`user_id`), CONSTRAINT `fk_rails_21c421fd41`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+)[0m
+  ↳ db/migrate/20181210233115_create_clients.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20181210233115')[0m
+  ↳ bin/rails:9
+  [1m[35m (125.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateAddresses (20181210233132)
+  [1m[35m (1199.5ms)[0m  [1m[35mCREATE TABLE `addresses` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `country` varchar(255), `city` varchar(255), `state` varchar(255), `neighborhood` varchar(255), `street` varchar(255), `number` varchar(255), `client_id` bigint, `user_id` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_addresses_on_client_id`  (`client_id`), CONSTRAINT `fk_rails_cef659b3ac`
+FOREIGN KEY (`client_id`)
+  REFERENCES `clients` (`id`)
+)[0m
+  ↳ db/migrate/20181210233132_create_addresses.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20181210233132')[0m
+  ↳ bin/rails:9
+  [1m[35m (55.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateProducts (20181210233251)
+  [1m[35m (427.0ms)[0m  [1m[35mCREATE TABLE `products` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `description` text, `status` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL)[0m
+  ↳ db/migrate/20181210233251_create_products.rb:3
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20181210233251')[0m
+  ↳ bin/rails:9
+  [1m[35m (54.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateDiscounts (20181210233348)
+  [1m[35m (880.9ms)[0m  [1m[35mCREATE TABLE `discounts` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `description` text, `value` int, `kind` int, `status` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL)[0m
+  ↳ db/migrate/20181210233348_create_discounts.rb:3
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20181210233348')[0m
+  ↳ bin/rails:9
+  [1m[35m (55.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateProductQuantities (20181210233737)
+  [1m[35m (730.8ms)[0m  [1m[35mCREATE TABLE `product_quantities` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `product_id` bigint, `quantity` int, `user_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_product_quantities_on_product_id`  (`product_id`),  INDEX `index_product_quantities_on_user_id`  (`user_id`), CONSTRAINT `fk_rails_9ed819d17f`
+FOREIGN KEY (`product_id`)
+  REFERENCES `products` (`id`)
+, CONSTRAINT `fk_rails_d4973535be`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+)[0m
+  ↳ db/migrate/20181210233737_create_product_quantities.rb:3
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20181210233737')[0m
+  ↳ bin/rails:9
+  [1m[35m (65.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateSales (20181210233804)
+  [1m[35m (1582.7ms)[0m  [1m[35mCREATE TABLE `sales` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `client_id` bigint, `sale_date` date, `user_id` bigint, `discount_id` bigint, `notes` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_sales_on_client_id`  (`client_id`),  INDEX `index_sales_on_user_id`  (`user_id`),  INDEX `index_sales_on_discount_id`  (`discount_id`), CONSTRAINT `fk_rails_3fb137af04`
+FOREIGN KEY (`client_id`)
+  REFERENCES `clients` (`id`)
+, CONSTRAINT `fk_rails_8e94f16ccc`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+, CONSTRAINT `fk_rails_133d74bb6b`
+FOREIGN KEY (`discount_id`)
+  REFERENCES `discounts` (`id`)
+)[0m
+  ↳ db/migrate/20181210233804_create_sales.rb:3
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20181210233804')[0m
+  ↳ bin/rails:9
+  [1m[35m (85.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateComissions (20181210233910)
+  [1m[35m (1007.8ms)[0m  [1m[35mCREATE TABLE `comissions` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `sale_id` bigint, `value` decimal, `user_id` bigint, `status` int, `note` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_comissions_on_sale_id`  (`sale_id`),  INDEX `index_comissions_on_user_id`  (`user_id`), CONSTRAINT `fk_rails_07b74f871e`
+FOREIGN KEY (`sale_id`)
+  REFERENCES `sales` (`id`)
+, CONSTRAINT `fk_rails_0e35f67291`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+)[0m
+  ↳ db/migrate/20181210233910_create_comissions.rb:3
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20181210233910')[0m
+  ↳ bin/rails:9
+  [1m[35m (65.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2018-12-10 23:39:46', '2018-12-10 23:39:46')[0m
+  ↳ bin/rails:9
+  [1m[35m (122.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT RELEASE_LOCK('3123916393049455500')[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rails:9
+Started GET "/" for 127.0.0.1 at 2018-12-10 21:50:43 -0200
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by RailsAdmin::MainController#dashboard as HTML
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `addresses`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT  `addresses`.* FROM `addresses` ORDER BY `addresses`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `clients`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` ORDER BY `clients`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `comissions`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mComission Load (0.2ms)[0m  [1m[34mSELECT  `comissions`.* FROM `comissions` ORDER BY `comissions`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `discounts`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mDiscount Load (0.3ms)[0m  [1m[34mSELECT  `discounts`.* FROM `discounts` ORDER BY `discounts`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `products`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  `products`.* FROM `products` ORDER BY `products`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_quantities`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mProductQuantity Load (0.2ms)[0m  [1m[34mSELECT  `product_quantities`.* FROM `product_quantities` ORDER BY `product_quantities`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `sales`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mSale Load (0.2ms)[0m  [1m[34mSELECT  `sales`.* FROM `sales` ORDER BY `sales`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `users`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` ORDER BY `users`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application (19.5ms)
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/_secondary_navigation.html.haml (3.3ms)
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/_navigation.html.haml (8.7ms)
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/_sidebar_navigation.html.haml (5.5ms)
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/pjax.html.haml
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/pjax.html.haml (3.9ms)
+Completed 200 OK in 7972ms (Views: 7470.3ms | ActiveRecord: 9.7ms)
+
+
+Started GET "/client?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 21:51:08 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"client"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mClient Load (0.3ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` ORDER BY clients.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (41.6ms)
+Completed 200 OK in 80ms (Views: 53.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/comission?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 21:51:13 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"comission"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mComission Load (0.3ms)[0m  [1m[34mSELECT  `comissions`.* FROM `comissions` ORDER BY comissions.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (72.5ms)
+Completed 200 OK in 121ms (Views: 87.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/discount?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 21:51:15 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"discount"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mDiscount Load (0.3ms)[0m  [1m[34mSELECT  `discounts`.* FROM `discounts` ORDER BY discounts.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (43.7ms)
+Completed 200 OK in 78ms (Views: 53.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/product?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 21:51:16 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"product"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT  `products`.* FROM `products` ORDER BY products.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (54.3ms)
+Completed 200 OK in 83ms (Views: 61.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/product_quantity?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 21:51:17 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"product_quantity"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mProductQuantity Load (0.3ms)[0m  [1m[34mSELECT  `product_quantities`.* FROM `product_quantities` ORDER BY product_quantities.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (42.1ms)
+Completed 200 OK in 102ms (Views: 62.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/sale?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 21:51:18 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"sale"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mSale Load (0.3ms)[0m  [1m[34mSELECT  `sales`.* FROM `sales` ORDER BY sales.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (34.7ms)
+Completed 200 OK in 48ms (Views: 41.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/user?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 21:51:18 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"user"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` ORDER BY users.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (42.4ms)
+Completed 200 OK in 68ms (Views: 52.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/address?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 21:51:21 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"address"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mAddress Load (0.3ms)[0m  [1m[34mSELECT  `addresses`.* FROM `addresses` ORDER BY addresses.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (30.6ms)
+Completed 200 OK in 71ms (Views: 38.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/client?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 21:51:22 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"client"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mClient Load (0.3ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` ORDER BY clients.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (36.7ms)
+Completed 200 OK in 58ms (Views: 46.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/comission?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 21:51:22 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"comission"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mComission Load (0.3ms)[0m  [1m[34mSELECT  `comissions`.* FROM `comissions` ORDER BY comissions.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (35.2ms)
+Completed 200 OK in 57ms (Views: 47.6ms | ActiveRecord: 0.3ms)
+
+
+  [1m[35m (0.2ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/bin/rake:23
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:8
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO `users` (`name`, `kind`, `status`, `created_at`, `updated_at`) VALUES ('José', 0, 0, '2018-12-10 23:53:36', '2018-12-10 23:53:36')[0m
+  ↳ db/seeds.rb:8
+  [1m[35m (154.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:8
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO `users` (`name`, `kind`, `status`, `created_at`, `updated_at`) VALUES ('Marcos', 1, 0, '2018-12-10 23:53:36', '2018-12-10 23:53:36')[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (613.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:12
+  [1m[36mProduct Create (0.2ms)[0m  [1m[32mINSERT INTO `products` (`name`, `description`, `status`, `created_at`, `updated_at`) VALUES ('Smartphone', 'Um smartphone novo ...', 0, '2018-12-10 23:53:37', '2018-12-10 23:53:37')[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (28.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:13
+  [1m[36mProduct Create (0.5ms)[0m  [1m[32mINSERT INTO `products` (`name`, `description`, `status`, `created_at`, `updated_at`) VALUES ('Tablet', 'Um tablet novo ...', 0, '2018-12-10 23:53:37', '2018-12-10 23:53:37')[0m
+  ↳ db/seeds.rb:13
+  [1m[35m (64.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:13
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:16
+  [1m[36mDiscount Create (0.3ms)[0m  [1m[32mINSERT INTO `discounts` (`name`, `description`, `value`, `status`, `created_at`, `updated_at`) VALUES ('Desconto carnaval', 'Aplique esse desconto no carnaval', 10, 0, '2018-12-10 23:53:37', '2018-12-10 23:53:37')[0m
+  ↳ db/seeds.rb:16
+  [1m[35m (35.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:16
+Started GET "/comission" for 127.0.0.1 at 2018-12-10 21:53:42 -0200
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"model_name"=>"comission"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/application
+  [1m[36mComission Load (0.4ms)[0m  [1m[34mSELECT  `comissions`.* FROM `comissions` ORDER BY comissions.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/application (51.8ms)
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/_secondary_navigation.html.haml (3.1ms)
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/_navigation.html.haml (7.6ms)
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/_sidebar_navigation.html.haml (7.4ms)
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/pjax.html.haml
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/pjax.html.haml (6.9ms)
+Completed 200 OK in 703ms (Views: 419.8ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/client?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 21:53:45 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"client"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mClient Load (0.3ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` ORDER BY clients.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (36.7ms)
+Completed 200 OK in 77ms (Views: 43.3ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/client?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 21:53:47 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"client"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mClient Load (0.3ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` ORDER BY clients.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (49.7ms)
+Completed 200 OK in 69ms (Views: 60.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/address?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 21:53:50 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"address"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mAddress Load (0.4ms)[0m  [1m[34mSELECT  `addresses`.* FROM `addresses` ORDER BY addresses.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (30.9ms)
+Completed 200 OK in 82ms (Views: 42.0ms | ActiveRecord: 8.2ms)
+
+
+Started GET "/user?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 21:53:52 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"user"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` ORDER BY users.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (48.9ms)
+Completed 200 OK in 73ms (Views: 59.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/sale?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 21:54:01 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"sale"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mSale Load (0.3ms)[0m  [1m[34mSELECT  `sales`.* FROM `sales` ORDER BY sales.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (49.2ms)
+Completed 200 OK in 71ms (Views: 58.0ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/product_quantity?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 21:54:02 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"product_quantity"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mProductQuantity Load (0.4ms)[0m  [1m[34mSELECT  `product_quantities`.* FROM `product_quantities` ORDER BY product_quantities.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (44.7ms)
+Completed 200 OK in 82ms (Views: 55.2ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/user?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 21:54:03 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"user"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` ORDER BY users.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (75.2ms)
+Completed 200 OK in 100ms (Views: 87.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/product?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 21:54:35 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"product"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT  `products`.* FROM `products` ORDER BY products.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (36.2ms)
+Completed 200 OK in 50ms (Views: 43.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/user?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 21:54:39 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"user"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` ORDER BY users.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (45.3ms)
+Completed 200 OK in 68ms (Views: 55.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/product?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 21:54:40 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"product"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT  `products`.* FROM `products` ORDER BY products.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (42.5ms)
+Completed 200 OK in 66ms (Views: 53.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/product/2?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 21:54:48 -0200
+Processing by RailsAdmin::MainController#show as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"product", "id"=>"2"}
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT  `products`.* FROM `products` WHERE `products`.`id` = 2 ORDER BY `products`.`id` ASC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/show.html.haml within layouts/rails_admin/pjax
+  [1m[36mProductQuantity Load (37.7ms)[0m  [1m[34mSELECT `product_quantities`.* FROM `product_quantities` WHERE `product_quantities`.`product_id` = 2[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/show.html.haml within layouts/rails_admin/pjax (56.5ms)
+Completed 200 OK in 117ms (Views: 48.8ms | ActiveRecord: 38.2ms)
+
+
+Started GET "/address?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 22:06:35 -0200
+  [1m[35m (0.6ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"address"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mAddress Load (0.4ms)[0m  [1m[34mSELECT  `addresses`.* FROM `addresses` ORDER BY addresses.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (42.1ms)
+Completed 200 OK in 64ms (Views: 53.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/client?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 22:06:41 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"client"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mClient Load (0.5ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` ORDER BY clients.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (26.3ms)
+Completed 200 OK in 38ms (Views: 31.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/comission?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 22:06:42 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"comission"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mComission Load (0.3ms)[0m  [1m[34mSELECT  `comissions`.* FROM `comissions` ORDER BY comissions.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (40.1ms)
+Completed 200 OK in 59ms (Views: 48.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/discount?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 22:06:43 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"discount"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mDiscount Load (0.4ms)[0m  [1m[34mSELECT  `discounts`.* FROM `discounts` ORDER BY discounts.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (31.7ms)
+Completed 200 OK in 47ms (Views: 37.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/product?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 22:06:44 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"product"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT  `products`.* FROM `products` ORDER BY products.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (43.4ms)
+Completed 200 OK in 66ms (Views: 53.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/product_quantity?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 22:06:45 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"product_quantity"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mProductQuantity Load (0.4ms)[0m  [1m[34mSELECT  `product_quantities`.* FROM `product_quantities` ORDER BY product_quantities.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (58.0ms)
+Completed 200 OK in 85ms (Views: 69.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/sale?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 22:06:45 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"sale"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mSale Load (0.4ms)[0m  [1m[34mSELECT  `sales`.* FROM `sales` ORDER BY sales.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (46.9ms)
+Completed 200 OK in 66ms (Views: 55.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/user?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 22:06:46 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"user"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` ORDER BY users.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (35.1ms)
+Completed 200 OK in 46ms (Views: 40.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/sale" for 127.0.0.1 at 2018-12-10 22:14:28 -0200
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"model_name"=>"sale"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/application
+  [1m[36mSale Load (0.3ms)[0m  [1m[34mSELECT  `sales`.* FROM `sales` ORDER BY sales.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/application (78.5ms)
+Completed 500 Internal Server Error in 547ms (ActiveRecord: 4.0ms)
+
+
+  
+ActionView::Template::Error (bad URI(is not URI?): file-digest:///home/derik/projeto/sales/Projeto Sales/app/assets/config/rails_admin/bootstrap):
+     6:     %meta{content: "width=device-width, initial-scale=1", name: "viewport; charset=utf-8"}
+     7:     %meta{content: "NONE,NOARCHIVE", name: "robots"}
+     8:     = csrf_meta_tag
+     9:     = stylesheet_link_tag "rails_admin/rails_admin.css", media: :all
+    10:     = javascript_include_tag "rails_admin/rails_admin.js"
+    11:   %body.rails_admin
+    12:     #admin-js{:'data-i18n-options' => I18n.t("admin.js").to_json}
+  
+/home/derik/.rbenv/versions/2.5.3/lib/ruby/2.5.0/uri/rfc3986_parser.rb:67:in `split'
+/home/derik/.rbenv/versions/2.5.3/lib/ruby/2.5.0/uri/common.rb:199:in `split'
+sprockets (3.7.2) lib/sprockets/uri_utils.rb:45:in `split_file_uri'
+sprockets (3.7.2) lib/sprockets/uri_utils.rb:126:in `parse_file_digest_uri'
+sprockets (3.7.2) lib/sprockets.rb:159:in `block in <module:Sprockets>'
+sprockets (3.7.2) lib/sprockets/dependencies.rb:67:in `resolve_dependency'
+sprockets (3.7.2) lib/sprockets/cached_environment.rb:23:in `block in initialize'
+sprockets (3.7.2) lib/sprockets/cached_environment.rb:59:in `resolve_dependency'
+sprockets (3.7.2) lib/sprockets/loader.rb:268:in `block in resolve_dependencies'
+sprockets (3.7.2) lib/sprockets/loader.rb:268:in `map'
+sprockets (3.7.2) lib/sprockets/loader.rb:268:in `resolve_dependencies'
+sprockets (3.7.2) lib/sprockets/loader.rb:55:in `block in load'
+sprockets (3.7.2) lib/sprockets/loader.rb:311:in `block in fetch_asset_from_dependency_cache'
+sprockets (3.7.2) lib/sprockets/loader.rb:307:in `each'
+sprockets (3.7.2) lib/sprockets/loader.rb:307:in `each_with_index'
+sprockets (3.7.2) lib/sprockets/loader.rb:307:in `fetch_asset_from_dependency_cache'
+sprockets (3.7.2) lib/sprockets/loader.rb:44:in `load'
+sprockets (3.7.2) lib/sprockets/cached_environment.rb:20:in `block in initialize'
+sprockets (3.7.2) lib/sprockets/cached_environment.rb:47:in `load'
+sprockets (3.7.2) lib/sprockets/base.rb:66:in `find_asset'
+sprockets (3.7.2) lib/sprockets/base.rb:92:in `[]'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:355:in `find_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:347:in `find_debug_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:229:in `block in lookup_debug_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:242:in `block in resolve_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `each'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `detect'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `resolve_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:228:in `lookup_debug_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:170:in `block in stylesheet_link_tag'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:169:in `map'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:169:in `stylesheet_link_tag'
+rails_admin (1.4.2) app/views/layouts/rails_admin/application.html.haml:9:in `__home_derik__rbenv_versions_______lib_ruby_gems_______gems_rails_admin_______app_views_layouts_rails_admin_application_html_haml__2382900246303246219_47005714238760'
+actionview (5.2.2) lib/action_view/template.rb:159:in `block in render'
+activesupport (5.2.2) lib/active_support/notifications.rb:170:in `instrument'
+actionview (5.2.2) lib/action_view/template.rb:354:in `instrument_render_template'
+actionview (5.2.2) lib/action_view/template.rb:157:in `render'
+actionview (5.2.2) lib/action_view/renderer/template_renderer.rb:66:in `render_with_layout'
+actionview (5.2.2) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+actionview (5.2.2) lib/action_view/renderer/template_renderer.rb:16:in `render'
+actionview (5.2.2) lib/action_view/renderer/renderer.rb:44:in `render_template'
+actionview (5.2.2) lib/action_view/renderer/renderer.rb:25:in `render'
+actionview (5.2.2) lib/action_view/rendering.rb:103:in `_render_template'
+actionpack (5.2.2) lib/action_controller/metal/streaming.rb:219:in `_render_template'
+actionview (5.2.2) lib/action_view/rendering.rb:84:in `render_to_body'
+actionpack (5.2.2) lib/action_controller/metal/rendering.rb:52:in `render_to_body'
+actionpack (5.2.2) lib/action_controller/metal/renderers.rb:142:in `render_to_body'
+actionpack (5.2.2) lib/abstract_controller/rendering.rb:25:in `render'
+actionpack (5.2.2) lib/action_controller/metal/rendering.rb:36:in `render'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:46:in `block (2 levels) in render'
+activesupport (5.2.2) lib/active_support/core_ext/benchmark.rb:14:in `block in ms'
+/home/derik/.rbenv/versions/2.5.3/lib/ruby/2.5.0/benchmark.rb:308:in `realtime'
+activesupport (5.2.2) lib/active_support/core_ext/benchmark.rb:14:in `ms'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:46:in `block in render'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+activerecord (5.2.2) lib/active_record/railties/controller_runtime.rb:31:in `cleanup_view_runtime'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:45:in `render'
+remotipart (1.4.2) lib/remotipart/render_overrides.rb:16:in `render_with_remotipart'
+rails_admin (1.4.2) lib/rails_admin/config/actions/index.rb:44:in `block (4 levels) in <class:Index>'
+actionpack (5.2.2) lib/action_controller/metal/mime_responds.rb:203:in `respond_to'
+rails_admin (1.4.2) lib/rails_admin/config/actions/index.rb:42:in `block (2 levels) in <class:Index>'
+rails_admin (1.4.2) app/controllers/rails_admin/main_controller.rb:22:in `instance_eval'
+rails_admin (1.4.2) app/controllers/rails_admin/main_controller.rb:22:in `index'
+actionpack (5.2.2) lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'
+actionpack (5.2.2) lib/abstract_controller/base.rb:194:in `process_action'
+actionpack (5.2.2) lib/action_controller/metal/rendering.rb:30:in `process_action'
+actionpack (5.2.2) lib/abstract_controller/callbacks.rb:42:in `block in process_action'
+activesupport (5.2.2) lib/active_support/callbacks.rb:132:in `run_callbacks'
+actionpack (5.2.2) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.2) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.2) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.2) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.2) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.2) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.2) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.2) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.2) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.2) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.2) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.2) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.2) lib/action_dispatch/routing/route_set.rb:840:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+railties (5.2.2) lib/rails/railtie.rb:190:in `public_send'
+railties (5.2.2) lib/rails/railtie.rb:190:in `method_missing'
+actionpack (5.2.2) lib/action_dispatch/routing/mapper.rb:19:in `block in <class:Constraints>'
+actionpack (5.2.2) lib/action_dispatch/routing/mapper.rb:48:in `serve'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.2) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack-pjax (1.0.0) lib/rack/pjax.rb:12:in `call'
+remotipart (1.4.2) lib/remotipart/middleware.rb:32:in `call'
+rack (2.0.6) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.0.6) lib/rack/etag.rb:25:in `call'
+rack (2.0.6) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.6) lib/rack/head.rb:12:in `call'
+actionpack (5.2.2) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.0.6) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.6) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/cookies.rb:670:in `call'
+activerecord (5.2.2) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.2) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2018-12-10 22:15:43 -0200
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by RailsAdmin::MainController#dashboard as HTML
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `addresses`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mAddress Load (0.3ms)[0m  [1m[34mSELECT  `addresses`.* FROM `addresses` ORDER BY `addresses`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `clients`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` ORDER BY `clients`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `comissions`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mComission Load (0.3ms)[0m  [1m[34mSELECT  `comissions`.* FROM `comissions` ORDER BY `comissions`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `discounts`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mDiscount Load (0.3ms)[0m  [1m[34mSELECT  `discounts`.* FROM `discounts` ORDER BY `discounts`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `products`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  `products`.* FROM `products` ORDER BY `products`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_quantities`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mProductQuantity Load (0.3ms)[0m  [1m[34mSELECT  `product_quantities`.* FROM `product_quantities` ORDER BY `product_quantities`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `sales`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mSale Load (0.2ms)[0m  [1m[34mSELECT  `sales`.* FROM `sales` ORDER BY `sales`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `users`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` ORDER BY `users`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application (17.8ms)
+Completed 500 Internal Server Error in 456ms (ActiveRecord: 12.0ms)
+
+
+  
+ActionView::Template::Error (bad URI(is not URI?): file-digest:///home/derik/projeto/sales/Projeto Sales/app/assets/config/rails_admin/bootstrap):
+     6:     %meta{content: "width=device-width, initial-scale=1", name: "viewport; charset=utf-8"}
+     7:     %meta{content: "NONE,NOARCHIVE", name: "robots"}
+     8:     = csrf_meta_tag
+     9:     = stylesheet_link_tag "rails_admin/rails_admin.css", media: :all
+    10:     = javascript_include_tag "rails_admin/rails_admin.js"
+    11:   %body.rails_admin
+    12:     #admin-js{:'data-i18n-options' => I18n.t("admin.js").to_json}
+  
+/home/derik/.rbenv/versions/2.5.3/lib/ruby/2.5.0/uri/rfc3986_parser.rb:67:in `split'
+/home/derik/.rbenv/versions/2.5.3/lib/ruby/2.5.0/uri/common.rb:199:in `split'
+sprockets (3.7.2) lib/sprockets/uri_utils.rb:45:in `split_file_uri'
+sprockets (3.7.2) lib/sprockets/uri_utils.rb:126:in `parse_file_digest_uri'
+sprockets (3.7.2) lib/sprockets.rb:159:in `block in <module:Sprockets>'
+sprockets (3.7.2) lib/sprockets/dependencies.rb:67:in `resolve_dependency'
+sprockets (3.7.2) lib/sprockets/cached_environment.rb:23:in `block in initialize'
+sprockets (3.7.2) lib/sprockets/cached_environment.rb:59:in `resolve_dependency'
+sprockets (3.7.2) lib/sprockets/loader.rb:268:in `block in resolve_dependencies'
+sprockets (3.7.2) lib/sprockets/loader.rb:268:in `map'
+sprockets (3.7.2) lib/sprockets/loader.rb:268:in `resolve_dependencies'
+sprockets (3.7.2) lib/sprockets/loader.rb:55:in `block in load'
+sprockets (3.7.2) lib/sprockets/loader.rb:311:in `block in fetch_asset_from_dependency_cache'
+sprockets (3.7.2) lib/sprockets/loader.rb:307:in `each'
+sprockets (3.7.2) lib/sprockets/loader.rb:307:in `each_with_index'
+sprockets (3.7.2) lib/sprockets/loader.rb:307:in `fetch_asset_from_dependency_cache'
+sprockets (3.7.2) lib/sprockets/loader.rb:44:in `load'
+sprockets (3.7.2) lib/sprockets/cached_environment.rb:20:in `block in initialize'
+sprockets (3.7.2) lib/sprockets/cached_environment.rb:47:in `load'
+sprockets (3.7.2) lib/sprockets/base.rb:66:in `find_asset'
+sprockets (3.7.2) lib/sprockets/base.rb:92:in `[]'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:355:in `find_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:347:in `find_debug_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:229:in `block in lookup_debug_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:242:in `block in resolve_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `each'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `detect'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `resolve_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:228:in `lookup_debug_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:170:in `block in stylesheet_link_tag'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:169:in `map'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:169:in `stylesheet_link_tag'
+rails_admin (1.4.2) app/views/layouts/rails_admin/application.html.haml:9:in `__home_derik__rbenv_versions_______lib_ruby_gems_______gems_rails_admin_______app_views_layouts_rails_admin_application_html_haml__4215173863946839479_70168267261520'
+actionview (5.2.2) lib/action_view/template.rb:159:in `block in render'
+activesupport (5.2.2) lib/active_support/notifications.rb:170:in `instrument'
+actionview (5.2.2) lib/action_view/template.rb:354:in `instrument_render_template'
+actionview (5.2.2) lib/action_view/template.rb:157:in `render'
+actionview (5.2.2) lib/action_view/renderer/template_renderer.rb:66:in `render_with_layout'
+actionview (5.2.2) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+actionview (5.2.2) lib/action_view/renderer/template_renderer.rb:16:in `render'
+actionview (5.2.2) lib/action_view/renderer/renderer.rb:44:in `render_template'
+actionview (5.2.2) lib/action_view/renderer/renderer.rb:25:in `render'
+actionview (5.2.2) lib/action_view/rendering.rb:103:in `_render_template'
+actionpack (5.2.2) lib/action_controller/metal/streaming.rb:219:in `_render_template'
+actionview (5.2.2) lib/action_view/rendering.rb:84:in `render_to_body'
+actionpack (5.2.2) lib/action_controller/metal/rendering.rb:52:in `render_to_body'
+actionpack (5.2.2) lib/action_controller/metal/renderers.rb:142:in `render_to_body'
+actionpack (5.2.2) lib/abstract_controller/rendering.rb:25:in `render'
+actionpack (5.2.2) lib/action_controller/metal/rendering.rb:36:in `render'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:46:in `block (2 levels) in render'
+activesupport (5.2.2) lib/active_support/core_ext/benchmark.rb:14:in `block in ms'
+/home/derik/.rbenv/versions/2.5.3/lib/ruby/2.5.0/benchmark.rb:308:in `realtime'
+activesupport (5.2.2) lib/active_support/core_ext/benchmark.rb:14:in `ms'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:46:in `block in render'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+activerecord (5.2.2) lib/active_record/railties/controller_runtime.rb:31:in `cleanup_view_runtime'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:45:in `render'
+remotipart (1.4.2) lib/remotipart/render_overrides.rb:16:in `render_with_remotipart'
+rails_admin (1.4.2) lib/rails_admin/config/actions/dashboard.rb:37:in `block (2 levels) in <class:Dashboard>'
+rails_admin (1.4.2) app/controllers/rails_admin/main_controller.rb:22:in `instance_eval'
+rails_admin (1.4.2) app/controllers/rails_admin/main_controller.rb:22:in `dashboard'
+actionpack (5.2.2) lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'
+actionpack (5.2.2) lib/abstract_controller/base.rb:194:in `process_action'
+actionpack (5.2.2) lib/action_controller/metal/rendering.rb:30:in `process_action'
+actionpack (5.2.2) lib/abstract_controller/callbacks.rb:42:in `block in process_action'
+activesupport (5.2.2) lib/active_support/callbacks.rb:132:in `run_callbacks'
+actionpack (5.2.2) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.2) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.2) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.2) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.2) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.2) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.2) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.2) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.2) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.2) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.2) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.2) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.2) lib/action_dispatch/routing/route_set.rb:840:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+railties (5.2.2) lib/rails/railtie.rb:190:in `public_send'
+railties (5.2.2) lib/rails/railtie.rb:190:in `method_missing'
+actionpack (5.2.2) lib/action_dispatch/routing/mapper.rb:19:in `block in <class:Constraints>'
+actionpack (5.2.2) lib/action_dispatch/routing/mapper.rb:48:in `serve'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.2) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack-pjax (1.0.0) lib/rack/pjax.rb:12:in `call'
+remotipart (1.4.2) lib/remotipart/middleware.rb:32:in `call'
+rack (2.0.6) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.0.6) lib/rack/etag.rb:25:in `call'
+rack (2.0.6) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.6) lib/rack/head.rb:12:in `call'
+actionpack (5.2.2) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.0.6) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.6) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/cookies.rb:670:in `call'
+activerecord (5.2.2) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.2) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2018-12-10 22:19:35 -0200
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by RailsAdmin::MainController#dashboard as HTML
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `addresses`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT  `addresses`.* FROM `addresses` ORDER BY `addresses`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `clients`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` ORDER BY `clients`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `comissions`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mComission Load (0.2ms)[0m  [1m[34mSELECT  `comissions`.* FROM `comissions` ORDER BY `comissions`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `discounts`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mDiscount Load (0.2ms)[0m  [1m[34mSELECT  `discounts`.* FROM `discounts` ORDER BY `discounts`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `products`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT  `products`.* FROM `products` ORDER BY `products`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_quantities`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mProductQuantity Load (0.2ms)[0m  [1m[34mSELECT  `product_quantities`.* FROM `product_quantities` ORDER BY `product_quantities`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `sales`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mSale Load (0.2ms)[0m  [1m[34mSELECT  `sales`.* FROM `sales` ORDER BY `sales`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `users`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` ORDER BY `users`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application (19.7ms)
+Completed 500 Internal Server Error in 488ms (ActiveRecord: 10.4ms)
+
+
+  
+ActionView::Template::Error (bad URI(is not URI?): file-digest:///home/derik/projeto/sales/Projeto Sales/app/assets/config/rails_admin/bootstrap):
+     6:     %meta{content: "width=device-width, initial-scale=1", name: "viewport; charset=utf-8"}
+     7:     %meta{content: "NONE,NOARCHIVE", name: "robots"}
+     8:     = csrf_meta_tag
+     9:     = stylesheet_link_tag "rails_admin/rails_admin.css", media: :all
+    10:     = javascript_include_tag "rails_admin/rails_admin.js"
+    11:   %body.rails_admin
+    12:     #admin-js{:'data-i18n-options' => I18n.t("admin.js").to_json}
+  
+/home/derik/.rbenv/versions/2.5.3/lib/ruby/2.5.0/uri/rfc3986_parser.rb:67:in `split'
+/home/derik/.rbenv/versions/2.5.3/lib/ruby/2.5.0/uri/common.rb:199:in `split'
+sprockets (3.7.2) lib/sprockets/uri_utils.rb:45:in `split_file_uri'
+sprockets (3.7.2) lib/sprockets/uri_utils.rb:126:in `parse_file_digest_uri'
+sprockets (3.7.2) lib/sprockets.rb:159:in `block in <module:Sprockets>'
+sprockets (3.7.2) lib/sprockets/dependencies.rb:67:in `resolve_dependency'
+sprockets (3.7.2) lib/sprockets/cached_environment.rb:23:in `block in initialize'
+sprockets (3.7.2) lib/sprockets/cached_environment.rb:59:in `resolve_dependency'
+sprockets (3.7.2) lib/sprockets/loader.rb:268:in `block in resolve_dependencies'
+sprockets (3.7.2) lib/sprockets/loader.rb:268:in `map'
+sprockets (3.7.2) lib/sprockets/loader.rb:268:in `resolve_dependencies'
+sprockets (3.7.2) lib/sprockets/loader.rb:55:in `block in load'
+sprockets (3.7.2) lib/sprockets/loader.rb:311:in `block in fetch_asset_from_dependency_cache'
+sprockets (3.7.2) lib/sprockets/loader.rb:307:in `each'
+sprockets (3.7.2) lib/sprockets/loader.rb:307:in `each_with_index'
+sprockets (3.7.2) lib/sprockets/loader.rb:307:in `fetch_asset_from_dependency_cache'
+sprockets (3.7.2) lib/sprockets/loader.rb:44:in `load'
+sprockets (3.7.2) lib/sprockets/cached_environment.rb:20:in `block in initialize'
+sprockets (3.7.2) lib/sprockets/cached_environment.rb:47:in `load'
+sprockets (3.7.2) lib/sprockets/base.rb:66:in `find_asset'
+sprockets (3.7.2) lib/sprockets/base.rb:92:in `[]'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:355:in `find_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:347:in `find_debug_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:229:in `block in lookup_debug_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:242:in `block in resolve_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `each'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `detect'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `resolve_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:228:in `lookup_debug_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:170:in `block in stylesheet_link_tag'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:169:in `map'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:169:in `stylesheet_link_tag'
+rails_admin (1.4.2) app/views/layouts/rails_admin/application.html.haml:9:in `__home_derik__rbenv_versions_______lib_ruby_gems_______gems_rails_admin_______app_views_layouts_rails_admin_application_html_haml___1615788315503129416_70331742830120'
+actionview (5.2.2) lib/action_view/template.rb:159:in `block in render'
+activesupport (5.2.2) lib/active_support/notifications.rb:170:in `instrument'
+actionview (5.2.2) lib/action_view/template.rb:354:in `instrument_render_template'
+actionview (5.2.2) lib/action_view/template.rb:157:in `render'
+actionview (5.2.2) lib/action_view/renderer/template_renderer.rb:66:in `render_with_layout'
+actionview (5.2.2) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+actionview (5.2.2) lib/action_view/renderer/template_renderer.rb:16:in `render'
+actionview (5.2.2) lib/action_view/renderer/renderer.rb:44:in `render_template'
+actionview (5.2.2) lib/action_view/renderer/renderer.rb:25:in `render'
+actionview (5.2.2) lib/action_view/rendering.rb:103:in `_render_template'
+actionpack (5.2.2) lib/action_controller/metal/streaming.rb:219:in `_render_template'
+actionview (5.2.2) lib/action_view/rendering.rb:84:in `render_to_body'
+actionpack (5.2.2) lib/action_controller/metal/rendering.rb:52:in `render_to_body'
+actionpack (5.2.2) lib/action_controller/metal/renderers.rb:142:in `render_to_body'
+actionpack (5.2.2) lib/abstract_controller/rendering.rb:25:in `render'
+actionpack (5.2.2) lib/action_controller/metal/rendering.rb:36:in `render'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:46:in `block (2 levels) in render'
+activesupport (5.2.2) lib/active_support/core_ext/benchmark.rb:14:in `block in ms'
+/home/derik/.rbenv/versions/2.5.3/lib/ruby/2.5.0/benchmark.rb:308:in `realtime'
+activesupport (5.2.2) lib/active_support/core_ext/benchmark.rb:14:in `ms'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:46:in `block in render'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+activerecord (5.2.2) lib/active_record/railties/controller_runtime.rb:31:in `cleanup_view_runtime'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:45:in `render'
+remotipart (1.4.2) lib/remotipart/render_overrides.rb:16:in `render_with_remotipart'
+rails_admin (1.4.2) lib/rails_admin/config/actions/dashboard.rb:37:in `block (2 levels) in <class:Dashboard>'
+rails_admin (1.4.2) app/controllers/rails_admin/main_controller.rb:22:in `instance_eval'
+rails_admin (1.4.2) app/controllers/rails_admin/main_controller.rb:22:in `dashboard'
+actionpack (5.2.2) lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'
+actionpack (5.2.2) lib/abstract_controller/base.rb:194:in `process_action'
+actionpack (5.2.2) lib/action_controller/metal/rendering.rb:30:in `process_action'
+actionpack (5.2.2) lib/abstract_controller/callbacks.rb:42:in `block in process_action'
+activesupport (5.2.2) lib/active_support/callbacks.rb:132:in `run_callbacks'
+actionpack (5.2.2) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.2) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.2) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.2) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.2) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.2) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.2) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.2) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.2) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.2) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.2) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.2) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.2) lib/action_dispatch/routing/route_set.rb:840:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+railties (5.2.2) lib/rails/railtie.rb:190:in `public_send'
+railties (5.2.2) lib/rails/railtie.rb:190:in `method_missing'
+actionpack (5.2.2) lib/action_dispatch/routing/mapper.rb:19:in `block in <class:Constraints>'
+actionpack (5.2.2) lib/action_dispatch/routing/mapper.rb:48:in `serve'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.2) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack-pjax (1.0.0) lib/rack/pjax.rb:12:in `call'
+remotipart (1.4.2) lib/remotipart/middleware.rb:32:in `call'
+rack (2.0.6) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.0.6) lib/rack/etag.rb:25:in `call'
+rack (2.0.6) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.6) lib/rack/head.rb:12:in `call'
+actionpack (5.2.2) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.0.6) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.6) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/cookies.rb:670:in `call'
+activerecord (5.2.2) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.2) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2018-12-10 22:21:13 -0200
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by RailsAdmin::MainController#dashboard as HTML
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `addresses`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT  `addresses`.* FROM `addresses` ORDER BY `addresses`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `clients`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` ORDER BY `clients`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `comissions`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mComission Load (0.2ms)[0m  [1m[34mSELECT  `comissions`.* FROM `comissions` ORDER BY `comissions`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (10.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `discounts`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mDiscount Load (0.2ms)[0m  [1m[34mSELECT  `discounts`.* FROM `discounts` ORDER BY `discounts`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `products`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  `products`.* FROM `products` ORDER BY `products`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_quantities`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mProductQuantity Load (0.2ms)[0m  [1m[34mSELECT  `product_quantities`.* FROM `product_quantities` ORDER BY `product_quantities`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `sales`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mSale Load (0.2ms)[0m  [1m[34mSELECT  `sales`.* FROM `sales` ORDER BY `sales`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `users`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` ORDER BY `users`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application (19.0ms)
+Completed 500 Internal Server Error in 424ms (ActiveRecord: 22.1ms)
+
+
+  
+ActionView::Template::Error (bad URI(is not URI?): file-digest:///home/derik/projeto/sales/Projeto Sales/app/assets/config/rails_admin/bootstrap):
+     6:     %meta{content: "width=device-width, initial-scale=1", name: "viewport; charset=utf-8"}
+     7:     %meta{content: "NONE,NOARCHIVE", name: "robots"}
+     8:     = csrf_meta_tag
+     9:     = stylesheet_link_tag "rails_admin/rails_admin.css", media: :all
+    10:     = javascript_include_tag "rails_admin/rails_admin.js"
+    11:   %body.rails_admin
+    12:     #admin-js{:'data-i18n-options' => I18n.t("admin.js").to_json}
+  
+/home/derik/.rbenv/versions/2.5.3/lib/ruby/2.5.0/uri/rfc3986_parser.rb:67:in `split'
+/home/derik/.rbenv/versions/2.5.3/lib/ruby/2.5.0/uri/common.rb:199:in `split'
+sprockets (3.7.2) lib/sprockets/uri_utils.rb:45:in `split_file_uri'
+sprockets (3.7.2) lib/sprockets/uri_utils.rb:126:in `parse_file_digest_uri'
+sprockets (3.7.2) lib/sprockets.rb:159:in `block in <module:Sprockets>'
+sprockets (3.7.2) lib/sprockets/dependencies.rb:67:in `resolve_dependency'
+sprockets (3.7.2) lib/sprockets/cached_environment.rb:23:in `block in initialize'
+sprockets (3.7.2) lib/sprockets/cached_environment.rb:59:in `resolve_dependency'
+sprockets (3.7.2) lib/sprockets/loader.rb:268:in `block in resolve_dependencies'
+sprockets (3.7.2) lib/sprockets/loader.rb:268:in `map'
+sprockets (3.7.2) lib/sprockets/loader.rb:268:in `resolve_dependencies'
+sprockets (3.7.2) lib/sprockets/loader.rb:55:in `block in load'
+sprockets (3.7.2) lib/sprockets/loader.rb:311:in `block in fetch_asset_from_dependency_cache'
+sprockets (3.7.2) lib/sprockets/loader.rb:307:in `each'
+sprockets (3.7.2) lib/sprockets/loader.rb:307:in `each_with_index'
+sprockets (3.7.2) lib/sprockets/loader.rb:307:in `fetch_asset_from_dependency_cache'
+sprockets (3.7.2) lib/sprockets/loader.rb:44:in `load'
+sprockets (3.7.2) lib/sprockets/cached_environment.rb:20:in `block in initialize'
+sprockets (3.7.2) lib/sprockets/cached_environment.rb:47:in `load'
+sprockets (3.7.2) lib/sprockets/base.rb:66:in `find_asset'
+sprockets (3.7.2) lib/sprockets/base.rb:92:in `[]'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:355:in `find_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:347:in `find_debug_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:229:in `block in lookup_debug_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:242:in `block in resolve_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `each'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `detect'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `resolve_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:228:in `lookup_debug_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:170:in `block in stylesheet_link_tag'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:169:in `map'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:169:in `stylesheet_link_tag'
+rails_admin (1.4.2) app/views/layouts/rails_admin/application.html.haml:9:in `__home_derik__rbenv_versions_______lib_ruby_gems_______gems_rails_admin_______app_views_layouts_rails_admin_application_html_haml__4256556222944718428_70324729628340'
+actionview (5.2.2) lib/action_view/template.rb:159:in `block in render'
+activesupport (5.2.2) lib/active_support/notifications.rb:170:in `instrument'
+actionview (5.2.2) lib/action_view/template.rb:354:in `instrument_render_template'
+actionview (5.2.2) lib/action_view/template.rb:157:in `render'
+actionview (5.2.2) lib/action_view/renderer/template_renderer.rb:66:in `render_with_layout'
+actionview (5.2.2) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+actionview (5.2.2) lib/action_view/renderer/template_renderer.rb:16:in `render'
+actionview (5.2.2) lib/action_view/renderer/renderer.rb:44:in `render_template'
+actionview (5.2.2) lib/action_view/renderer/renderer.rb:25:in `render'
+actionview (5.2.2) lib/action_view/rendering.rb:103:in `_render_template'
+actionpack (5.2.2) lib/action_controller/metal/streaming.rb:219:in `_render_template'
+actionview (5.2.2) lib/action_view/rendering.rb:84:in `render_to_body'
+actionpack (5.2.2) lib/action_controller/metal/rendering.rb:52:in `render_to_body'
+actionpack (5.2.2) lib/action_controller/metal/renderers.rb:142:in `render_to_body'
+actionpack (5.2.2) lib/abstract_controller/rendering.rb:25:in `render'
+actionpack (5.2.2) lib/action_controller/metal/rendering.rb:36:in `render'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:46:in `block (2 levels) in render'
+activesupport (5.2.2) lib/active_support/core_ext/benchmark.rb:14:in `block in ms'
+/home/derik/.rbenv/versions/2.5.3/lib/ruby/2.5.0/benchmark.rb:308:in `realtime'
+activesupport (5.2.2) lib/active_support/core_ext/benchmark.rb:14:in `ms'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:46:in `block in render'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+activerecord (5.2.2) lib/active_record/railties/controller_runtime.rb:31:in `cleanup_view_runtime'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:45:in `render'
+remotipart (1.4.2) lib/remotipart/render_overrides.rb:16:in `render_with_remotipart'
+rails_admin (1.4.2) lib/rails_admin/config/actions/dashboard.rb:37:in `block (2 levels) in <class:Dashboard>'
+rails_admin (1.4.2) app/controllers/rails_admin/main_controller.rb:22:in `instance_eval'
+rails_admin (1.4.2) app/controllers/rails_admin/main_controller.rb:22:in `dashboard'
+actionpack (5.2.2) lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'
+actionpack (5.2.2) lib/abstract_controller/base.rb:194:in `process_action'
+actionpack (5.2.2) lib/action_controller/metal/rendering.rb:30:in `process_action'
+actionpack (5.2.2) lib/abstract_controller/callbacks.rb:42:in `block in process_action'
+activesupport (5.2.2) lib/active_support/callbacks.rb:132:in `run_callbacks'
+actionpack (5.2.2) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.2) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.2) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.2) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.2) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.2) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.2) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.2) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.2) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.2) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.2) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.2) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.2) lib/action_dispatch/routing/route_set.rb:840:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+railties (5.2.2) lib/rails/railtie.rb:190:in `public_send'
+railties (5.2.2) lib/rails/railtie.rb:190:in `method_missing'
+actionpack (5.2.2) lib/action_dispatch/routing/mapper.rb:19:in `block in <class:Constraints>'
+actionpack (5.2.2) lib/action_dispatch/routing/mapper.rb:48:in `serve'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.2) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack-pjax (1.0.0) lib/rack/pjax.rb:12:in `call'
+remotipart (1.4.2) lib/remotipart/middleware.rb:32:in `call'
+rack (2.0.6) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.0.6) lib/rack/etag.rb:25:in `call'
+rack (2.0.6) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.6) lib/rack/head.rb:12:in `call'
+actionpack (5.2.2) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.0.6) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.6) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/cookies.rb:670:in `call'
+activerecord (5.2.2) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.2) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2018-12-10 22:22:17 -0200
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by RailsAdmin::MainController#dashboard as HTML
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM `addresses`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mAddress Load (0.5ms)[0m  [1m[34mSELECT  `addresses`.* FROM `addresses` ORDER BY `addresses`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `clients`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` ORDER BY `clients`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `comissions`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mComission Load (0.2ms)[0m  [1m[34mSELECT  `comissions`.* FROM `comissions` ORDER BY `comissions`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `discounts`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mDiscount Load (0.2ms)[0m  [1m[34mSELECT  `discounts`.* FROM `discounts` ORDER BY `discounts`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `products`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  `products`.* FROM `products` ORDER BY `products`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_quantities`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mProductQuantity Load (0.2ms)[0m  [1m[34mSELECT  `product_quantities`.* FROM `product_quantities` ORDER BY `product_quantities`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `sales`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mSale Load (0.3ms)[0m  [1m[34mSELECT  `sales`.* FROM `sales` ORDER BY `sales`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `users`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` ORDER BY `users`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application (22.0ms)
+Completed 500 Internal Server Error in 593ms (ActiveRecord: 12.9ms)
+
+
+  
+ActionView::Template::Error (bad URI(is not URI?): file-digest:///home/derik/projeto/projeto sales/sales/app/assets/config/rails_admin/bootstrap):
+     6:     %meta{content: "width=device-width, initial-scale=1", name: "viewport; charset=utf-8"}
+     7:     %meta{content: "NONE,NOARCHIVE", name: "robots"}
+     8:     = csrf_meta_tag
+     9:     = stylesheet_link_tag "rails_admin/rails_admin.css", media: :all
+    10:     = javascript_include_tag "rails_admin/rails_admin.js"
+    11:   %body.rails_admin
+    12:     #admin-js{:'data-i18n-options' => I18n.t("admin.js").to_json}
+  
+/home/derik/.rbenv/versions/2.5.3/lib/ruby/2.5.0/uri/rfc3986_parser.rb:67:in `split'
+/home/derik/.rbenv/versions/2.5.3/lib/ruby/2.5.0/uri/common.rb:199:in `split'
+sprockets (3.7.2) lib/sprockets/uri_utils.rb:45:in `split_file_uri'
+sprockets (3.7.2) lib/sprockets/uri_utils.rb:126:in `parse_file_digest_uri'
+sprockets (3.7.2) lib/sprockets.rb:159:in `block in <module:Sprockets>'
+sprockets (3.7.2) lib/sprockets/dependencies.rb:67:in `resolve_dependency'
+sprockets (3.7.2) lib/sprockets/cached_environment.rb:23:in `block in initialize'
+sprockets (3.7.2) lib/sprockets/cached_environment.rb:59:in `resolve_dependency'
+sprockets (3.7.2) lib/sprockets/loader.rb:268:in `block in resolve_dependencies'
+sprockets (3.7.2) lib/sprockets/loader.rb:268:in `map'
+sprockets (3.7.2) lib/sprockets/loader.rb:268:in `resolve_dependencies'
+sprockets (3.7.2) lib/sprockets/loader.rb:55:in `block in load'
+sprockets (3.7.2) lib/sprockets/loader.rb:311:in `block in fetch_asset_from_dependency_cache'
+sprockets (3.7.2) lib/sprockets/loader.rb:307:in `each'
+sprockets (3.7.2) lib/sprockets/loader.rb:307:in `each_with_index'
+sprockets (3.7.2) lib/sprockets/loader.rb:307:in `fetch_asset_from_dependency_cache'
+sprockets (3.7.2) lib/sprockets/loader.rb:44:in `load'
+sprockets (3.7.2) lib/sprockets/cached_environment.rb:20:in `block in initialize'
+sprockets (3.7.2) lib/sprockets/cached_environment.rb:47:in `load'
+sprockets (3.7.2) lib/sprockets/base.rb:66:in `find_asset'
+sprockets (3.7.2) lib/sprockets/base.rb:92:in `[]'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:355:in `find_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:347:in `find_debug_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:229:in `block in lookup_debug_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:242:in `block in resolve_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `each'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `detect'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:241:in `resolve_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:228:in `lookup_debug_asset'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:170:in `block in stylesheet_link_tag'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:169:in `map'
+sprockets-rails (3.2.1) lib/sprockets/rails/helper.rb:169:in `stylesheet_link_tag'
+rails_admin (1.4.2) app/views/layouts/rails_admin/application.html.haml:9:in `__home_derik__rbenv_versions_______lib_ruby_gems_______gems_rails_admin_______app_views_layouts_rails_admin_application_html_haml___1187726430737277908_69853392134440'
+actionview (5.2.2) lib/action_view/template.rb:159:in `block in render'
+activesupport (5.2.2) lib/active_support/notifications.rb:170:in `instrument'
+actionview (5.2.2) lib/action_view/template.rb:354:in `instrument_render_template'
+actionview (5.2.2) lib/action_view/template.rb:157:in `render'
+actionview (5.2.2) lib/action_view/renderer/template_renderer.rb:66:in `render_with_layout'
+actionview (5.2.2) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+actionview (5.2.2) lib/action_view/renderer/template_renderer.rb:16:in `render'
+actionview (5.2.2) lib/action_view/renderer/renderer.rb:44:in `render_template'
+actionview (5.2.2) lib/action_view/renderer/renderer.rb:25:in `render'
+actionview (5.2.2) lib/action_view/rendering.rb:103:in `_render_template'
+actionpack (5.2.2) lib/action_controller/metal/streaming.rb:219:in `_render_template'
+actionview (5.2.2) lib/action_view/rendering.rb:84:in `render_to_body'
+actionpack (5.2.2) lib/action_controller/metal/rendering.rb:52:in `render_to_body'
+actionpack (5.2.2) lib/action_controller/metal/renderers.rb:142:in `render_to_body'
+actionpack (5.2.2) lib/abstract_controller/rendering.rb:25:in `render'
+actionpack (5.2.2) lib/action_controller/metal/rendering.rb:36:in `render'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:46:in `block (2 levels) in render'
+activesupport (5.2.2) lib/active_support/core_ext/benchmark.rb:14:in `block in ms'
+/home/derik/.rbenv/versions/2.5.3/lib/ruby/2.5.0/benchmark.rb:308:in `realtime'
+activesupport (5.2.2) lib/active_support/core_ext/benchmark.rb:14:in `ms'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:46:in `block in render'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+activerecord (5.2.2) lib/active_record/railties/controller_runtime.rb:31:in `cleanup_view_runtime'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:45:in `render'
+remotipart (1.4.2) lib/remotipart/render_overrides.rb:16:in `render_with_remotipart'
+rails_admin (1.4.2) lib/rails_admin/config/actions/dashboard.rb:37:in `block (2 levels) in <class:Dashboard>'
+rails_admin (1.4.2) app/controllers/rails_admin/main_controller.rb:22:in `instance_eval'
+rails_admin (1.4.2) app/controllers/rails_admin/main_controller.rb:22:in `dashboard'
+actionpack (5.2.2) lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'
+actionpack (5.2.2) lib/abstract_controller/base.rb:194:in `process_action'
+actionpack (5.2.2) lib/action_controller/metal/rendering.rb:30:in `process_action'
+actionpack (5.2.2) lib/abstract_controller/callbacks.rb:42:in `block in process_action'
+activesupport (5.2.2) lib/active_support/callbacks.rb:132:in `run_callbacks'
+actionpack (5.2.2) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (5.2.2) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (5.2.2) lib/active_support/notifications.rb:168:in `block in instrument'
+activesupport (5.2.2) lib/active_support/notifications/instrumenter.rb:23:in `instrument'
+activesupport (5.2.2) lib/active_support/notifications.rb:168:in `instrument'
+actionpack (5.2.2) lib/action_controller/metal/instrumentation.rb:32:in `process_action'
+actionpack (5.2.2) lib/action_controller/metal/params_wrapper.rb:256:in `process_action'
+activerecord (5.2.2) lib/active_record/railties/controller_runtime.rb:24:in `process_action'
+actionpack (5.2.2) lib/abstract_controller/base.rb:134:in `process'
+actionview (5.2.2) lib/action_view/rendering.rb:32:in `process'
+actionpack (5.2.2) lib/action_controller/metal.rb:191:in `dispatch'
+actionpack (5.2.2) lib/action_controller/metal.rb:252:in `dispatch'
+actionpack (5.2.2) lib/action_dispatch/routing/route_set.rb:52:in `dispatch'
+actionpack (5.2.2) lib/action_dispatch/routing/route_set.rb:34:in `serve'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.2) lib/action_dispatch/routing/route_set.rb:840:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+railties (5.2.2) lib/rails/railtie.rb:190:in `public_send'
+railties (5.2.2) lib/rails/railtie.rb:190:in `method_missing'
+actionpack (5.2.2) lib/action_dispatch/routing/mapper.rb:19:in `block in <class:Constraints>'
+actionpack (5.2.2) lib/action_dispatch/routing/mapper.rb:48:in `serve'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:52:in `block in serve'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:35:in `each'
+actionpack (5.2.2) lib/action_dispatch/journey/router.rb:35:in `serve'
+actionpack (5.2.2) lib/action_dispatch/routing/route_set.rb:840:in `call'
+rack-pjax (1.0.0) lib/rack/pjax.rb:12:in `call'
+remotipart (1.4.2) lib/remotipart/middleware.rb:32:in `call'
+rack (2.0.6) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.0.6) lib/rack/etag.rb:25:in `call'
+rack (2.0.6) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.6) lib/rack/head.rb:12:in `call'
+actionpack (5.2.2) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.0.6) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.6) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/cookies.rb:670:in `call'
+activerecord (5.2.2) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.2) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.2) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.2) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.2) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2018-12-10 22:25:39 -0200
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by RailsAdmin::MainController#dashboard as HTML
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `addresses`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT  `addresses`.* FROM `addresses` ORDER BY `addresses`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `clients`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mClient Load (0.4ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` ORDER BY `clients`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `comissions`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mComission Load (0.2ms)[0m  [1m[34mSELECT  `comissions`.* FROM `comissions` ORDER BY `comissions`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `discounts`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mDiscount Load (0.3ms)[0m  [1m[34mSELECT  `discounts`.* FROM `discounts` ORDER BY `discounts`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `products`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  `products`.* FROM `products` ORDER BY `products`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_quantities`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mProductQuantity Load (0.2ms)[0m  [1m[34mSELECT  `product_quantities`.* FROM `product_quantities` ORDER BY `product_quantities`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `sales`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mSale Load (0.2ms)[0m  [1m[34mSELECT  `sales`.* FROM `sales` ORDER BY `sales`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `users`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` ORDER BY `users`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application (26.1ms)
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/_secondary_navigation.html.haml (5.9ms)
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/_navigation.html.haml (16.1ms)
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/_sidebar_navigation.html.haml (10.8ms)
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/pjax.html.haml
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/pjax.html.haml (11.0ms)
+Completed 200 OK in 824ms (Views: 485.9ms | ActiveRecord: 10.7ms)
+
+
+Started GET "/client?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 22:36:54 -0200
+  [1m[35m (0.2ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"client"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mClient Load (0.3ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` ORDER BY clients.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (43.6ms)
+Completed 200 OK in 70ms (Views: 51.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/user?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-10 22:36:56 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"user"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` ORDER BY users.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (72.1ms)
+Completed 200 OK in 112ms (Views: 86.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-12-27 14:02:42 -0200
+  [1m[35m (257.6ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by RailsAdmin::MainController#dashboard as HTML
+  [1m[35m (22.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `addresses`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mAddress Load (0.5ms)[0m  [1m[34mSELECT  `addresses`.* FROM `addresses` ORDER BY `addresses`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `clients`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mClient Load (0.5ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` ORDER BY `clients`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `comissions`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mComission Load (0.7ms)[0m  [1m[34mSELECT  `comissions`.* FROM `comissions` ORDER BY `comissions`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `discounts`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mDiscount Load (0.2ms)[0m  [1m[34mSELECT  `discounts`.* FROM `discounts` ORDER BY `discounts`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT  `products`.* FROM `products` ORDER BY `products`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_quantities`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mProductQuantity Load (0.2ms)[0m  [1m[34mSELECT  `product_quantities`.* FROM `product_quantities` ORDER BY `product_quantities`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `sales`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mSale Load (0.2ms)[0m  [1m[34mSELECT  `sales`.* FROM `sales` ORDER BY `sales`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `users`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` ORDER BY `users`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application (52.7ms)
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/_secondary_navigation.html.haml (3.4ms)
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/_navigation.html.haml (8.5ms)
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/_sidebar_navigation.html.haml (4.6ms)
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/pjax.html.haml
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/pjax.html.haml (3.9ms)
+Completed 200 OK in 6049ms (Views: 1718.7ms | ActiveRecord: 548.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-12-27 14:15:58 -0200
+  [1m[35m (0.2ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by RailsAdmin::MainController#dashboard as HTML
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `addresses`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT  `addresses`.* FROM `addresses` ORDER BY `addresses`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `clients`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` ORDER BY `clients`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `comissions`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mComission Load (0.2ms)[0m  [1m[34mSELECT  `comissions`.* FROM `comissions` ORDER BY `comissions`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (7.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `discounts`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mDiscount Load (0.2ms)[0m  [1m[34mSELECT  `discounts`.* FROM `discounts` ORDER BY `discounts`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `products`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  `products`.* FROM `products` ORDER BY `products`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_quantities`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mProductQuantity Load (0.2ms)[0m  [1m[34mSELECT  `product_quantities`.* FROM `product_quantities` ORDER BY `product_quantities`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `sales`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mSale Load (0.2ms)[0m  [1m[34mSELECT  `sales`.* FROM `sales` ORDER BY `sales`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `users`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  `users`.* FROM `users` ORDER BY `users`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application (18.6ms)
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/_secondary_navigation.html.haml (3.1ms)
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/_navigation.html.haml (7.8ms)
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/_sidebar_navigation.html.haml (4.2ms)
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/pjax.html.haml
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/pjax.html.haml (4.0ms)
+Completed 200 OK in 647ms (Views: 369.7ms | ActiveRecord: 18.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-12-27 14:16:01 -0200
+Processing by RailsAdmin::MainController#dashboard as HTML
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `addresses`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mAddress Load (0.2ms)[0m  [1m[34mSELECT  `addresses`.* FROM `addresses` ORDER BY `addresses`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `clients`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mClient Load (0.1ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` ORDER BY `clients`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `comissions`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mComission Load (0.2ms)[0m  [1m[34mSELECT  `comissions`.* FROM `comissions` ORDER BY `comissions`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `discounts`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mDiscount Load (0.3ms)[0m  [1m[34mSELECT  `discounts`.* FROM `discounts` ORDER BY `discounts`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `products`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT  `products`.* FROM `products` ORDER BY `products`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM `product_quantities`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mProductQuantity Load (0.2ms)[0m  [1m[34mSELECT  `product_quantities`.* FROM `product_quantities` ORDER BY `product_quantities`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `sales`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mSale Load (0.2ms)[0m  [1m[34mSELECT  `sales`.* FROM `sales` ORDER BY `sales`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `users`[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` ORDER BY `users`.`id` DESC LIMIT 1[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application (17.7ms)
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/_secondary_navigation.html.haml (2.9ms)
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/_navigation.html.haml (7.7ms)
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/_sidebar_navigation.html.haml (5.4ms)
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/pjax.html.haml
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/layouts/rails_admin/pjax.html.haml (4.3ms)
+Completed 200 OK in 135ms (Views: 119.9ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/discount?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-27 14:16:02 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"discount"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mDiscount Load (0.4ms)[0m  [1m[34mSELECT  `discounts`.* FROM `discounts` ORDER BY discounts.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (406.7ms)
+Completed 200 OK in 475ms (Views: 466.4ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/comission?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-27 14:16:04 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"comission"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mComission Load (0.4ms)[0m  [1m[34mSELECT  `comissions`.* FROM `comissions` ORDER BY comissions.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (93.5ms)
+Completed 200 OK in 133ms (Views: 106.5ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/client?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-27 14:16:05 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"client"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mClient Load (0.4ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` ORDER BY clients.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (38.4ms)
+Completed 200 OK in 62ms (Views: 46.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/address?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-27 14:16:06 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"address"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mAddress Load (0.3ms)[0m  [1m[34mSELECT  `addresses`.* FROM `addresses` ORDER BY addresses.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (30.1ms)
+Completed 200 OK in 62ms (Views: 37.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/sale?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-27 14:16:06 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"sale"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mSale Load (0.4ms)[0m  [1m[34mSELECT  `sales`.* FROM `sales` ORDER BY sales.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (35.6ms)
+Completed 200 OK in 57ms (Views: 44.0ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/user?_pjax=%5Bdata-pjax-container%5D" for 127.0.0.1 at 2018-12-27 14:16:07 -0200
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"user"}
+  Rendering /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` ORDER BY users.id desc LIMIT 20 OFFSET 0[0m
+  ↳ /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+  Rendered /home/derik/.rbenv/versions/2.5.3/lib/ruby/gems/2.5.0/gems/rails_admin-1.4.2/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (42.5ms)
+Completed 200 OK in 54ms (Views: 48.1ms | ActiveRecord: 0.7ms)
+
+
