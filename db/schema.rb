@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_10_233910) do
+ActiveRecord::Schema.define(version: 2018_12_27_163048) do
 
-  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "country"
     t.string "city"
     t.string "state"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2018_12_10_233910) do
     t.index ["client_id"], name: "index_addresses_on_client_id"
   end
 
-  create_table "clients", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "clients", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "company_name"
     t.string "document"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2018_12_10_233910) do
     t.index ["user_id"], name: "index_clients_on_user_id"
   end
 
-  create_table "comissions", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "comissions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "sale_id"
     t.decimal "value", precision: 10
     t.bigint "user_id"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2018_12_10_233910) do
     t.index ["user_id"], name: "index_comissions_on_user_id"
   end
 
-  create_table "discounts", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "discounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.integer "value"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2018_12_10_233910) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "product_quantities", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "product_quantities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "product_id"
     t.integer "quantity"
     t.bigint "user_id"
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 2018_12_10_233910) do
     t.index ["user_id"], name: "index_product_quantities_on_user_id"
   end
 
-  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.integer "status"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2018_12_10_233910) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "sales", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "sales", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "client_id"
     t.date "sale_date"
     t.bigint "user_id"
@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 2018_12_10_233910) do
     t.index ["user_id"], name: "index_sales_on_user_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "document"
     t.integer "kind"
@@ -101,6 +101,13 @@ ActiveRecord::Schema.define(version: 2018_12_10_233910) do
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "addresses", "clients"
