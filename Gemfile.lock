@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/dkgoncalves/rollincode_custom.git
-  revision: 8c1d707c4a84ced808bfcecd7d197ca775776aa7
+  revision: 6092e19273e8131bb0a13db4d7dd59f2b7076a4a
   specs:
     rails_admin_rollincode (1.2.1)
       rails (>= 4.0, < 6)
@@ -103,7 +103,7 @@ GEM
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
-    i18n (1.3.0)
+    i18n (1.5.1)
       concurrent-ruby (~> 1.0)
     io-like (0.3.0)
     jbuilder (2.8.0)
@@ -151,7 +151,7 @@ GEM
     mysql2 (0.5.2)
     nested_form (0.3.2)
     nio4r (2.3.1)
-    nokogiri (1.9.1)
+    nokogiri (1.10.0)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     public_suffix (3.0.3)
