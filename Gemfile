@@ -26,6 +26,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'rails_admin'
 gem 'devise'
 gem 'cancancan', '~> 1.15.0'
+# Gem para carregar fotos no sisetema
 gem 'carrierwave'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
