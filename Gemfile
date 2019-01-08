@@ -29,7 +29,8 @@ gem 'cancancan', '~> 1.15.0'
 # Gem para carregar fotos no sisetema
 gem 'carrierwave'
 # Gem para mudar a aparência do rails_admin
-gem 'rails_admin_rollincode', '~> 1.0'
+# Utilizando a gem vinda do meu próprio github
+gem 'rails_admin_rollincode', :git => 'https://github.com/dkgoncalves/rollincode_custom.git'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
