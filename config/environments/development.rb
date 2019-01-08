@@ -1,4 +1,10 @@
 Rails.application.configure do
+  # Adicionando a possibilidade de utilizar as traduções, diante disto,
+  # deve-se criar os arquivos com o nome: pt-BR em locales
+  config.i18n.enforce_available_locales = false
+  config.i18n.available_locales = ["pt-BR"]
+  config.i18n.default_locale = :'pt-BR'
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
