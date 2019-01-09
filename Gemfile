@@ -31,6 +31,12 @@ gem 'carrierwave'
 # Gem para mudar a aparência do rails_admin
 # Utilizando a gem vinda do meu próprio github
 gem 'rails_admin_rollincode', :git => 'https://github.com/dkgoncalves/rollincode_custom.git'
+# Gem para exportar pdf
+gem 'prawn-rails'
+# Gem para inserir gráficos
+# Para utilizar a gem no ubuntu, é necessário rodar o seguinte comando no console, antes de dar bundle
+# Comando: sudo apt-get install imagemagick libmagickcore-dev libmagickwand-dev
+gem 'gruff'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

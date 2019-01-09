@@ -1,12 +1,7 @@
 RailsAdmin.config do |config|
 
-  config.main_app_name = ["Representantes Comerciais", ""]
-
-  config.navigation_static_links = {
-  'OneBitCode' => 'https://onebitcode.com'
-  }
-
-  config.navigation_static_label = "Links Úteis"
+  require Rails.root.join('lib', 'rails_admin', 'rails_admin_pdf.rb')
+  RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::Pdf)
 
   ### Popular gems integration
 
@@ -29,11 +24,16 @@ RailsAdmin.config do |config|
 
   ## == Gravatar integration ==
   ## To disable Gravatar integration in Navigation Bar set to false
-  # config.show_gravatar = true
+  # config.show_gravatar true
+
+  config.navigation_static_links = {
+    'OneBitCode' => 'https://onebitcode.com'
+  }
+  config.navigation_static_label = "Links Úteis"
+
+  config.main_app_name = ["Representantes Comerciais", ""]
 
   config.model Sale do
-    # Adicionando ícones, lembrando que o rails_admin usa bootstrap, por este motivo
-    # basta utilizar os ícones disponíveis no site fontawesome.io/icons
     navigation_icon 'fa fa-money'
     create do
       field  :client
@@ -92,7 +92,6 @@ RailsAdmin.config do |config|
       field  :status
       field  :address
 
-
       field :user_id, :hidden do
         default_value do
           bindings[:view]._current_user.id
@@ -109,11 +108,9 @@ RailsAdmin.config do |config|
       field  :notes
       field  :status
       field  :address
-
     end
   end
 
-  # Como inserir os menus agrupados, fazendo menus e sub-menus
   config.model Discount do
     parent Product
   end
@@ -141,15 +138,6 @@ RailsAdmin.config do |config|
   end
 
   config.model ProductQuantity do
-    visible false
-  end
-
-  config.model Address do
-    visible false
-  end
-
-
-  config.model ProductQuantity do
     edit do
       field :product
       field :quantity
@@ -160,5 +148,24 @@ RailsAdmin.config do |config|
         end
       end
     end
+  end
+
+  config.actions do
+    dashboard                     # mandatory
+    index                         # mandatory
+    new
+    export
+    bulk_delete
+    show
+    edit
+    delete
+    show_in_app
+    pdf do
+      only User
+    end
+
+    ## With an audit adapter, you can add:
+    # history_index
+    # history_show
   end
 end
